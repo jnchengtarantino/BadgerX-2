@@ -5,8 +5,8 @@ from time import sleep
 class MyController(Controller):
    
 	def _init_(self, **kwargs):
+		self.pca = kwargs.pop('pcaBoard',None)
 		Controller._init_(self, **kwargs)
-		self.pca = kwargs['pcaBoard']
     
     # Example of overloading button press functions
 	def on_x_press(self):
