@@ -4,9 +4,11 @@ from time import sleep
 
 class MyController(Controller):
    
-	def _init_(self, pcaBoard, interface, connecting_using_ds4drv):
+	def __init__(self, pcaBoard, interface, connecting_using_ds4drv):
 		self.pca = pcaBoard
-		Controller._init_(self, interface, connecting_using_ds4drv)
+		print(interface)
+		print(connecting_using_ds4drv)
+		Controller.__init__(self, interface, connecting_using_ds4drv)
     
     # Example of overloading button press functions
 	def on_x_press(self):

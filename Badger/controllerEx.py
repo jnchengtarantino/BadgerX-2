@@ -8,8 +8,8 @@ from pyPS4Controller.controller import Controller
 
 class MyController(Controller):
    
-    def _init_(self, **kwargs):
-        Controller._init_(self, **kwargs)
+    def __init__(self, **kwargs):
+        Controller.__init__(self, **kwargs)
     
     # Example of overloading button press functions
     def on_x_press(self):
