@@ -4,8 +4,8 @@ from time import sleep
 
 class MyController(Controller):
    
-	def _init_(self, pca, **kwargs):
-		Controller._init_(self, **kwargs)
+	def _init_(self, pca, interface = "/dev/input/js0", connecting_using_ds4drv = False):
+		Controller._init_(self, interface = "/dev/input/js0", connecting_using_ds4drv = False)
 		self.pca = pca
     
     # Example of overloading button press functions
