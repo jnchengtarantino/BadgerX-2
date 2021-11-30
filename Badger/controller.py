@@ -36,9 +36,11 @@ class MyController(Controller):
 	def on_L1_release(self):
 		print("on_L1_release")
 
+	# Ranges from -32431 (barely pressed) to 32767 (fully pressed)
 	def on_L2_press(self, value):
 		print("on_L2_press: {}".format(value))
 
+	# Deadzone from [-32432, -32767]
 	def on_L2_release(self):
 		print("on_L2_release")
 
@@ -48,9 +50,11 @@ class MyController(Controller):
 	def on_R1_release(self):
 		print("on_R1_release")
 
+	# Ranges from -32431 (barely pressed) to 32767 (fully pressed)
 	def on_R2_press(self, value):
 		print("on_R2_press: {}".format(value))
 
+	# Deadzone from [-32432, -32767]
 	def on_R2_release(self):
 		print("on_R2_release")
 
@@ -72,22 +76,28 @@ class MyController(Controller):
 	def on_right_arrow_press(self):
 		print("on_right_arrow_press")
 
+	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_L3_up(self, value):
 		print("on_L3_up: {}".format(value))
 
+	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_L3_down(self, value):
 		print("on_L3_down: {}".format(value))
 
+	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_L3_left(self, value):
 		print("on_L3_left: {}".format(value))
 
+	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_L3_right(self, value):
 		print("on_L3_right: {}".format(value))
 
+	# Deadzone in range [-337, 336]
 	def on_L3_y_at_rest(self):
 		"""L3 joystick is at rest after the joystick was moved and let go off"""
 		print("on_L3_y_at_rest")
 
+	# Deadzone in range [-337, 336]
 	def on_L3_x_at_rest(self):
 		"""L3 joystick is at rest after the joystick was moved and let go off"""
 		print("on_L3_x_at_rest")
@@ -100,22 +110,28 @@ class MyController(Controller):
 		"""L3 joystick is released after the click. This event is only detected when connecting without ds4drv"""
 		print("on_L3_release")
 
+	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_R3_up(self, value):
 		print("on_R3_up: {}".format(value))
 
+	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_R3_down(self, value):
 		print("on_R3_down: {}".format(value))
 
+	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_R3_left(self, value):
 		print("on_R3_left: {}".format(value))
 
+	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_R3_right(self, value):
 		print("on_R3_right: {}".format(value))
 
+	# Deadzone in range [-337, 336]
 	def on_R3_y_at_rest(self):
 		"""R3 joystick is at rest after the joystick was moved and let go off"""
 		print("on_R3_y_at_rest")
 
+	# Deadzone in range [-337, 336]
 	def on_R3_x_at_rest(self):
 		"""R3 joystick is at rest after the joystick was moved and let go off"""
 		print("on_R3_x_at_rest")
