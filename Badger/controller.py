@@ -20,6 +20,7 @@ class MyController(Controller):
 
 	def on_triangle_press(self):
 		print("on_triangle_press")
+		self.pca.setDutyCycle(15, 0x0000)
 
 	def on_triangle_release(self):
 		print("on_triangle_release")
@@ -33,12 +34,14 @@ class MyController(Controller):
 
 	def on_square_press(self):
 		print("on_square_press")
+		self.pca.setDutyCycle(15, 0x7FFF)
 
 	def on_square_release(self):
 		print("on_square_release")
 
 	def on_L1_press(self):
 		print("on_L1_press")
+		self.pca.setAngle(12, 140)
 
 	def on_L1_release(self):
 		print("on_L1_release")
@@ -53,6 +56,7 @@ class MyController(Controller):
 
 	def on_R1_press(self):
 		print("on_R1_press")
+		self.pca.setDutyCycle(1000, 0x81EA)
 
 	def on_R1_release(self):
 		print("on_R1_release")

@@ -8,4 +8,4 @@ def restart():
 
 pca = PcaBoard(nServos=4)
 controller = MyController(pca,"/dev/input/js0", False)
-controller.listen(timeout = 60, on_disconnect=restart)
+controller.listen(timeout = 60) #set on_disconnect=restart for final usage
