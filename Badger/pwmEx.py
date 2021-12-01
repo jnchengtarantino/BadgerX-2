@@ -4,6 +4,9 @@ from adafruit_pca9685 import PCA9685
 from adafruit_motor import servo
 from time import sleep
 
+# Example code on how to run the servo motors using the PCA9685 PWM board
+# requires "sudo pip3 install adafruit-circuitpython-pca9685"
+
 i2c_bus = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c_bus)
 print(pca)
