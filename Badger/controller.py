@@ -1,5 +1,5 @@
 from pyPS4Controller.controller import Controller
-from adafruit_servokit import ServoKit
+from pcaBoard import PcaBoard
 from time import sleep
 
 class MyController(Controller):
@@ -13,7 +13,7 @@ class MyController(Controller):
     # Example of overloading button press functions
 	def on_x_press(self):
 		print("on_x_press")
-		self.pca.servo[0].angle = 0
+		self.pca.setAngle(0, 0)
 
 	def on_x_release(self):
 		print("on_x_release")
@@ -26,7 +26,7 @@ class MyController(Controller):
 
 	def on_circle_press(self):
 		print("on_circle_press")
-		self.pca.servo[0].angle = 90
+		self.pca.setAngle(0, 180)
 
 	def on_circle_release(self):
 		print("on_circle_release")

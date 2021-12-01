@@ -25,7 +25,8 @@ while True:
         print(i)
         sleep(0.1)
 # servo0 = servo.Servo(pca.channels[0], min_pulse=500,max_pulse=2500, actuation_range=270)
-# for i in range(270):servo0.angle = i
+# for i in range(270):
+#   servo0.angle = i
 #   print(servo0.angle)
 #   sleep(0.01)
 #for i in range(270):
