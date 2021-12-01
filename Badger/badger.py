@@ -1,4 +1,11 @@
 from controller import MyController
+from pcaBoard import PcaBoard
+from time import sleep
+import os
 
-controller = MyController(interface = "/dev/input/js0", connecting_using_ds4drv = False)
-controller.listen(timeout = 60)
+def restart():
+	os.system('sudo reboot')
+
+pca = PcaBoard(nServos=4)
+controller = MyController(pca,"/dev/input/js0", False)
+controller.listen(timeout = 60) #set on_disconnect=restart for final usage

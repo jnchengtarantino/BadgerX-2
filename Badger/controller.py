@@ -1,37 +1,47 @@
 from pyPS4Controller.controller import Controller
+from pcaBoard import PcaBoard
+from time import sleep
 
 class MyController(Controller):
    
-	def _init_(self, **kwargs):
-		Controller._init_(self, **kwargs)
+	def __init__(self, pcaBoard, interface, connecting_using_ds4drv):
+		self.pca = pcaBoard
+		print(interface)
+		print(connecting_using_ds4drv)
+		Controller.__init__(self, interface, connecting_using_ds4drv)
     
     # Example of overloading button press functions
 	def on_x_press(self):
 		print("on_x_press")
+		self.pca.setAngle(0, 0)
 
 	def on_x_release(self):
 		print("on_x_release")
 
 	def on_triangle_press(self):
 		print("on_triangle_press")
+		self.pca.setDutyCycle(15, 0x0000)
 
 	def on_triangle_release(self):
 		print("on_triangle_release")
 
 	def on_circle_press(self):
 		print("on_circle_press")
+		self.pca.setAngle(0, 180)
 
 	def on_circle_release(self):
 		print("on_circle_release")
 
 	def on_square_press(self):
 		print("on_square_press")
+		self.pca.setDutyCycle(15, 0x7FFF)
 
 	def on_square_release(self):
 		print("on_square_release")
 
 	def on_L1_press(self):
 		print("on_L1_press")
+		self.pca.setAngle(12, 140)
 
 	def on_L1_release(self):
 		print("on_L1_release")
@@ -46,6 +56,7 @@ class MyController(Controller):
 
 	def on_R1_press(self):
 		print("on_R1_press")
+		self.pca.setDutyCycle(1000, 0x81EA)
 
 	def on_R1_release(self):
 		print("on_R1_release")
