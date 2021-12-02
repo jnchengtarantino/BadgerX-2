@@ -32,9 +32,9 @@ class PcaBoard:
 		self.servos = []
 
 	def addServo(self, initAngle=0, minAngle=0, maxAngle=270):
-		if self.servos.len() < 16:
-			self.servos.append(mServo(self.servos.len()))
-			return self.servos.len()-1
+		if len(self.servos) < 16:
+			self.servos.append(mServo(len(self.servos)))
+			return len(self.servos)-1
 		else:
 			print("Already at max servos")
 			return None
