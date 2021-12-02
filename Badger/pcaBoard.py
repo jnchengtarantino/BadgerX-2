@@ -6,7 +6,7 @@ from time import sleep
 
 class mServo:
 	def __init__(self, pin, initAngle=0, minAngle=0, maxAngle=270):
-		print("initializing new servo on pin " + pin)
+		print("initializing new servo on pin " + str(pin))
 		self.initAngle = initAngle
 		self.minAngle = minAngle
 		self.maxAngle = maxAngle
