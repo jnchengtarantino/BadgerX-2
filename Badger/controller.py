@@ -124,10 +124,12 @@ class MyController(Controller):
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_R3_up(self, value):
 		print("on_R3_up: {}".format(value))
+		self.pca.setIncrement(0, value)
 
 	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_R3_down(self, value):
 		print("on_R3_down: {}".format(value))
+		self.pca.setIncrement(0, value)
 
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_R3_left(self, value):

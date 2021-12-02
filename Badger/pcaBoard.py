@@ -4,6 +4,8 @@ from adafruit_pca9685 import PCA9685
 from adafruit_motor import servo
 from time import sleep
 
+SCALE_FACTOR = -1/32767
+
 class mServo:
 	def __init__(self, pin, initAngle=0, minAngle=0, maxAngle=270):
 		print("initializing new servo on pin " + str(pin))
@@ -11,8 +13,12 @@ class mServo:
 		self.minAngle = minAngle
 		self.maxAngle = maxAngle
 		self.pin = pin
-		self.increment = 0
+		self.increment = 0	# Raw value from joy stick, needs to be scaled by self.SCALE_FACTOR
 		self.servo = None
+		self.SCALE_FACTOR = SCALE_FACTOR
+
+	def setScale(self,val):
+		self.SCALE_FACTOR = val
 	
 	def setAngle(self, angle):
 		print("PCA setAngle, servo: "+str(self.pin)+ " angle: "+str(angle))
@@ -20,6 +26,13 @@ class mServo:
 			self.servo.angle = angle
 		else:
 			print("Angle " + str(angle) + " illegal")
+	
+	def setIncrement(self, val):
+		self.increment = val
+
+	def step(self):
+		self.servo.angle = min(max(self.servo.angle + (self.increment * self.SCALE_FACTOR), self.minAngle), self.maxAngle)
+
 
 # Assuming Servos are always going to be on the pins [0,nServos-1] 
 # and pins [nServos, 15] can be used for pure pwm output
@@ -43,6 +56,9 @@ class PcaBoard:
 	def setAngle(self, servo, angle):
 		self.servos[servo].setAngle(angle)
 
+	def setIncrement(self, servo, val):
+		self.servos[servo].setIncrement(val)
+
 	# Duty Cycle range [0x0000, 0xFFFF] = [0, 65535] for 0% to 100%
 	def setDutyCycle(self, pin, amount):
 		print("PCA setDutyCycle, pin: " +str(pin)+ " amount: " +str(amount))
@@ -50,3 +66,7 @@ class PcaBoard:
 			self.pca.channels[pin].duty_cycle = amount
 		else:
 			print("Amount " + str(amount) + " or pin " + str(pin) + " illegal")
+
+	def step(self):
+		for s in self.servos:
+			s.step()

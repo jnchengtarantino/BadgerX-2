@@ -15,3 +15,7 @@ pca.addServo()
 controller = MyController(pca,"/dev/input/js0", False)
 controllerThread = threading.Thread(target=threadFunction, args=[controller])
 controllerThread.start()
+
+while True:
+	pca.step()
+	sleep(0.05)
