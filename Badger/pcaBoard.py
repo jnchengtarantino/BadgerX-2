@@ -4,7 +4,7 @@ from adafruit_pca9685 import PCA9685
 from adafruit_motor import servo
 from time import sleep
 
-SCALE_FACTOR = -1/(2**13)
+DEFAULT_SCALE_FACTOR = -1/(2**11)
 
 class mServo:
 	def __init__(self, pin, initAngle=0, minAngle=0, maxAngle=270):
@@ -15,10 +15,10 @@ class mServo:
 		self.pin = pin
 		self.increment = 0	# Raw value from joy stick, needs to be scaled by self.SCALE_FACTOR
 		self.servo = None
-		self.SCALE_FACTOR = SCALE_FACTOR
+		self.scale = DEFAULT_SCALE_FACTOR
 
 	def setScale(self,val):
-		self.SCALE_FACTOR = val
+		self.scale = val
 	
 	def setAngle(self, angle):
 		print("PCA setAngle, servo: "+str(self.pin)+ " angle: "+str(angle))
