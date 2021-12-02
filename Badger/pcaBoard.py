@@ -56,10 +56,16 @@ class PcaBoard:
 			return None
 
 	def setAngle(self, servo, angle):
-		self.servos[servo].setAngle(angle)
+		if(servo < len(self.servos)):
+			self.servos[servo].setAngle(angle)
+		else:
+			print("Servo " + str(servo) + "out of index")
 
 	def setIncrement(self, servo, val):
-		self.servos[servo].setIncrement(val)
+		if(servo < len(self.servos)):
+			self.servos[servo].setIncrement(val)
+		else:
+			print("Servo " + str(servo) + "out of index")
 
 	# Duty Cycle range [0x0000, 0xFFFF] = [0, 65535] for 0% to 100%
 	def setDutyCycle(self, pin, amount):
