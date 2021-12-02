@@ -12,7 +12,7 @@ class mServo:
 		self.maxAngle = maxAngle
 		self.pin = pin
 		self.increment = 0
-		self.servo = servo.Servo(self.pca.channels[pin], min_pulse=500,max_pulse=2500, actuation_range=270)
+		self.servo = None
 	
 	def setAngle(self, angle):
 		print("PCA setAngle, servo: "+str(self.pin)+ " angle: "+str(angle))
@@ -34,6 +34,7 @@ class PcaBoard:
 	def addServo(self, initAngle=0, minAngle=0, maxAngle=270):
 		if len(self.servos) < 16:
 			self.servos.append(mServo(len(self.servos)))
+			self.servos[len(self.servos)-1].servo = servo.Servo(self.pca.channels[len(self.servos)-1], min_pulse=500,max_pulse=2500, actuation_range=270)
 			return len(self.servos)-1
 		else:
 			print("Already at max servos")
