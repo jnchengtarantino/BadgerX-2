@@ -13,7 +13,7 @@ class mServo:
 		self.minAngle = minAngle
 		self.maxAngle = maxAngle
 		self.pin = pin
-		self.increment = 0	# Raw value from joy stick, needs to be scaled by self.SCALE_FACTOR
+		self.increment = 0	# Raw value from joy stick, needs to be scaled by self.scale
 		self.servo = None
 		self.scale = DEFAULT_SCALE_FACTOR
 
@@ -43,6 +43,7 @@ class PcaBoard:
 		self.pca = PCA9685(self.i2c_bus, address = address)
 		self.pca.frequency = 50
 		self.servos = []
+		self.motors = []
 
 	def addServo(self, initAngle=0, minAngle=0, maxAngle=270):
 		if len(self.servos) < 16:
