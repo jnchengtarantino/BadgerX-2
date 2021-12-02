@@ -31,7 +31,7 @@ class mServo:
 		self.increment = val
 
 	def step(self):
-		self.servo.angle = min(max(self.servo.angle + (self.increment * self.SCALE_FACTOR), self.minAngle), self.maxAngle)
+		self.servo.angle = min(max(self.servo.angle + (self.increment * self.scale), self.minAngle), self.maxAngle)
 
 
 # Assuming Servos are always going to be on the pins [0,nServos-1] 
