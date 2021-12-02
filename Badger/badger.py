@@ -10,7 +10,8 @@ def threadFunction(controller):
 	print("Spawning controller thread")
 	controller.listen(timeout = 60) #set on_disconnect=restart for final usage
 
-pca = PcaBoard(nServos=4)
+pca = PcaBoard()
+pca.addServo()
 controller = MyController(pca,"/dev/input/js0", False)
 controllerThread = threading.Thread(target=threadFunction, args=[controller])
 controllerThread.start()
