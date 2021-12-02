@@ -12,5 +12,5 @@ def threadFunction(controller):
 
 pca = PcaBoard(nServos=4)
 controller = MyController(pca,"/dev/input/js0", False)
-controllerThread = threading.Thread(target=threadFunction, args=(controller), daemon=True)
+controllerThread = threading.Thread(target=threadFunction, args=[controller])
 controllerThread.start()
