@@ -64,10 +64,10 @@ class PcaBoard:
 	# Duty Cycle range [0x0000, 0xFFFF] = [0, 65535] for 0% to 100%
 	def setDutyCycle(self, pin, amount):
 		print("PCA setDutyCycle, pin: " +str(pin)+ " amount: " +str(amount))
-		if (self.n <= pin <= 15 and 0x0000 <= amount <= 0xFFFF):
+		if (0x0000 <= amount <= 0xFFFF):
 			self.pca.channels[pin].duty_cycle = amount
 		else:
-			print("Amount " + str(amount) + " or pin " + str(pin) + " illegal")
+			print("Amount " + str(amount) + " illegal")
 
 	def step(self):
 		for s in self.servos:
