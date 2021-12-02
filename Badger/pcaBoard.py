@@ -4,7 +4,7 @@ from adafruit_pca9685 import PCA9685
 from adafruit_motor import servo
 from time import sleep
 
-SCALE_FACTOR = -1/32767
+SCALE_FACTOR = -1/(2**13)
 
 class mServo:
 	def __init__(self, pin, initAngle=0, minAngle=0, maxAngle=270):

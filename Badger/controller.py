@@ -143,6 +143,7 @@ class MyController(Controller):
 	def on_R3_y_at_rest(self):
 		"""R3 joystick is at rest after the joystick was moved and let go off"""
 		print("on_R3_y_at_rest")
+		self.pca.setIncrement(0, 0)
 
 	# Deadzone in range [-337, 336]
 	def on_R3_x_at_rest(self):
