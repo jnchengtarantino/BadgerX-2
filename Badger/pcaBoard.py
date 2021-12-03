@@ -16,7 +16,6 @@ class mServo:
 		self.increment = 0	# Raw value from joy stick, needs to be scaled by self.scale
 		self.servo = None
 		self.scale = DEFAULT_SCALE_FACTOR
-		self.servo.angle = initAngle
 
 	def setScale(self,val):
 		self.scale = val
@@ -85,6 +84,7 @@ class PcaBoard:
 			i = len(self.servos)
 			self.servos.append(mServo(i))
 			self.servos[i].servo = servo.Servo(self.pca.channels[i], min_pulse=500,max_pulse=2500, actuation_range=270)
+			self.servos[1].servo.angle = initAngle
 			return i
 		else:
 			print("Already at max servos")
