@@ -34,7 +34,7 @@ class mServo:
 	def step(self):
 		temp = self.servo.angle + (self.increment * self.scale)
 		if(self.minAngle<= temp <= self.maxAngle):
-			print("Servo " + str(self.pin) + " angle: " + str(self.servo.angle))
+			# print("Servo " + str(self.pin) + " angle: " + str(self.servo.angle))
 			self.servo.angle = temp
 		
 # speed is value from [0x0000..0xFFFF]
