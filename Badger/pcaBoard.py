@@ -84,7 +84,7 @@ class PcaBoard:
 			i = len(self.servos)
 			self.servos.append(mServo(i))
 			self.servos[i].servo = servo.Servo(self.pca.channels[i], min_pulse=500,max_pulse=2500, actuation_range=270)
-			self.servos[1].servo.angle = initAngle
+			self.servos[i].servo.angle = initAngle
 			return i
 		else:
 			print("Already at max servos")
