@@ -90,12 +90,14 @@ class MyController(Controller):
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_L3_up(self, value):
 		print("on_L3_up: {}".format(value))
-		self.pca.motorForward(15,abs(value)*2)
+		# self.pca.motorForward(15,abs(value)*2)
+		self.pca.setServoIncrement(1, value)
 
 	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_L3_down(self, value):
 		print("on_L3_down: {}".format(value))
-		self.pca.motorReverse(15,abs(value)*2)
+		# self.pca.motorReverse(15,abs(value)*2)
+		self.pca.setServoIncrement(1, value)
 
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_L3_left(self, value):
@@ -109,7 +111,8 @@ class MyController(Controller):
 	def on_L3_y_at_rest(self):
 		"""L3 joystick is at rest after the joystick was moved and let go off"""
 		print("on_L3_y_at_rest")
-		self.pca.motorStop(15)
+		# self.pca.motorStop(15)
+		self.pca.setServoIncrement(1, 0)
 
 	# Deadzone in range [-337, 336]
 	def on_L3_x_at_rest(self):
