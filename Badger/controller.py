@@ -90,12 +90,12 @@ class MyController(Controller):
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_L3_up(self, value):
 		print("on_L3_up: {}".format(value))
-		self.pca.motorForward(0,abs(value)*2)
+		self.pca.motorForward(15,abs(value)*2)
 
 	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_L3_down(self, value):
 		print("on_L3_down: {}".format(value))
-		self.pca.motorReverse(0,abs(value)*2)
+		self.pca.motorReverse(15,abs(value)*2)
 
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_L3_left(self, value):
