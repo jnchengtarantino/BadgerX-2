@@ -10,13 +10,13 @@ DEFAULT_SCALE_FACTOR = -1/(2**11)
 class mServo:
 	def __init__(self, pin, initAngle=0, minAngle=0, maxAngle=270):
 		print("initializing new servo on pin " + str(pin))
-		self.initAngle = initAngle
 		self.minAngle = minAngle
 		self.maxAngle = maxAngle
 		self.pin = pin
 		self.increment = 0	# Raw value from joy stick, needs to be scaled by self.scale
 		self.servo = None
 		self.scale = DEFAULT_SCALE_FACTOR
+		self.setAngle(initAngle)
 
 	def setScale(self,val):
 		self.scale = val
