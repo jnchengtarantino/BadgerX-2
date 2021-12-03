@@ -37,7 +37,7 @@ class mServo:
 # speed is value from [0x0000..0xFFFF]
 class mMotor:
 	def __init__(self, in1, in2, pwmPin):
-		print("Adding motor with in1: " + in1 + ", in2: " + in2+ ", pwm: " +pwmPin)
+		print("Adding motor with in1: " + str(in1) + ", in2: " + str(in2)+ ", pwm: " +str(pwmPin))
 		self.in1 = in1
 		self.in2 = in2
 		self.pwmPin = pwmPin
