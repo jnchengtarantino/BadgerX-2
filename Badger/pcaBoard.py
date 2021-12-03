@@ -10,7 +10,7 @@ DEFAULT_SCALE_FACTOR = -1/(2**11)
 
 class mServo:
 	def __init__(self, pin, initAngle=0, minAngle=0, maxAngle=270):
-		print("initializing new servo on pin " + str(pin))
+		print("initializing new servo on pin " + str(pin) + " init: "+str(initAngle)+" min: " + str(minAngle) + " max: " + str(maxAngle))
 		self.minAngle = minAngle
 		self.maxAngle = maxAngle
 		self.pin = pin
