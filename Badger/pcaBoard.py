@@ -16,7 +16,7 @@ class mServo:
 		self.increment = 0	# Raw value from joy stick, needs to be scaled by self.scale
 		self.servo = None
 		self.scale = DEFAULT_SCALE_FACTOR
-		self.setAngle(initAngle)
+		self.servo.angle = initAngle
 
 	def setScale(self,val):
 		self.scale = val
