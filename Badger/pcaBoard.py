@@ -46,7 +46,7 @@ class mMotor:
 		GPIO.setup(self.in2, GPIO.OUT)
 
 	def forward(self,val):
-		print("PCA forward, motor: "+str(self.pwmPin)+ " angle: "+str(val))
+		print("PCA forward, motor: "+str(self.pwmPin)+ " speed: "+str(val))
 		if (0x0000 <= val <= 0xFFFF):
 			GPIO.output(self.in1, GPIO.HIGH)
 			GPIO.output(self.in2, GPIO.LOW)
@@ -55,7 +55,7 @@ class mMotor:
 			print("val " + str(val) + " illegal")
 
 	def reverse(self, val):
-		print("PCA reverse, motor: "+str(self.pwmPin)+ " angle: "+str(val))
+		print("PCA reverse, motor: "+str(self.pwmPin)+ " speed: "+str(val))
 		if (0x0000 <= val <= 0xFFFF):
 			GPIO.output(self.in1, GPIO.LOW)
 			GPIO.output(self.in2, GPIO.HIGH)
@@ -64,6 +64,7 @@ class mMotor:
 			print("val " + str(val) + " illegal")
 
 	def stop(self):
+		print("PCA reverse, motor: "+str(self.pwmPin))
 		GPIO.output(self.in1, GPIO.HIGH)
 		GPIO.output(self.in2, GPIO.HIGH)
 		self.speed = 0xFFFF
