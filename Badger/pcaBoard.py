@@ -110,19 +110,19 @@ class PcaBoard:
 			print("Servo " + str(servo) + "out of index")
 
 	def motorForward(self, motor, val):
-		if(motor < 15-len(self.motors)):
+		if(motor >= 15-len(self.motors)):
 			self.motors[15-motor].forward(val)
 		else:
 			print("Motor " + str(motor) + "out of index")
 
 	def motorReverse(self, motor, val):
-		if(motor < 15-len(self.motors)):
+		if(motor >= 15-len(self.motors)):
 			self.motors[15-motor].reverse(val)
 		else:
 			print("Motor " + str(motor) + "out of index")
 
 	def motorStop(self, motor):
-		if(motor < 15-len(self.motors)):
+		if(motor >= 15-len(self.motors)):
 			self.motors[15-motor].stop
 		else:
 			print("Motor " + str(motor) + "out of index")
