@@ -13,8 +13,8 @@ def threadFunction(controller):
 
 GPIO.setmode(GPIO.BCM)
 pca = PcaBoard()
-pca.addServo(initAngle=90)
-pca.addServo(minAngle = 0, maxAngle = 105)
+pca.addServo(initAngle=90, minAngle=80,maxAngle=100)
+#pca.addServo(minAngle = 0, maxAngle = 105)
 pca.addMotor(14,15)
 controller = MyController(pca,"/dev/input/js0", False)
 controllerThread = threading.Thread(target=threadFunction, args=[controller])
