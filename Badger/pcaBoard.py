@@ -4,6 +4,7 @@ from adafruit_pca9685 import PCA9685
 from adafruit_motor import servo
 from time import sleep
 import RPi.GPIO as GPIO
+from statistics import median
 
 DEFAULT_SCALE_FACTOR = -1/(2**11)
 
@@ -31,7 +32,7 @@ class mServo:
 		self.increment = val
 
 	def step(self):
-		self.servo.angle = min(max(self.servo.angle + (self.increment * self.scale), self.minAngle), self.maxAngle)
+		self.servo.angle = median(self.servo.angle + (self.increment * self.scale), self.minAngle, self.maxAngle)
 		print("Servo " + str(self.pin) + " angle: " + str(self.servo.angle))
 
 # speed is value from [0x0000..0xFFFF]
