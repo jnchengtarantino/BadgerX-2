@@ -33,6 +33,7 @@ class mServo:
 
 	def step(self):
 		self.servo.angle = min(max(self.servo.angle + (self.increment * self.scale), self.minAngle), self.maxAngle)
+		print("Servo " + str(self.pin) + " angle: " + str(self.servo.angle))
 
 # speed is value from [0x0000..0xFFFF]
 class mMotor:
