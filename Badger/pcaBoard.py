@@ -37,6 +37,7 @@ class mServo:
 # speed is value from [0x0000..0xFFFF]
 class mMotor:
 	def __init__(self, in1, in2, pwmPin):
+		print("Adding motor with in1: " + in1 + ", in2: " + in2+ ", pwm: " +pwmPin)
 		self.in1 = in1
 		self.in2 = in2
 		self.pwmPin = pwmPin
@@ -90,7 +91,7 @@ class PcaBoard:
 	def addMotor(self, in1, in2):
 		if len(self.servos) + len(self.motors) < 16:
 			i = 15 - len(self.motors)
-			self.motors.append(in1, in2, i)
+			self.motors.append(mMotor(in1, in2, i))
 			return i
 		else:
 			print("Already at max servos + motors")
