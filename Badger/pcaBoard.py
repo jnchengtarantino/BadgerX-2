@@ -3,13 +3,14 @@ import busio
 from adafruit_pca9685 import PCA9685
 from adafruit_motor import servo
 from time import sleep
+import RPi.GPIO as GPIO
+from statistics import median
 
 DEFAULT_SCALE_FACTOR = -1/(2**11)
 
 class mServo:
 	def __init__(self, pin, initAngle=0, minAngle=0, maxAngle=270):
-		print("initializing new servo on pin " + str(pin))
-		self.initAngle = initAngle
+		print("initializing new servo on pin " + str(pin) + " init: "+str(initAngle)+" min: " + str(minAngle) + " max: " + str(maxAngle))
 		self.minAngle = minAngle
 		self.maxAngle = maxAngle
 		self.pin = pin
@@ -31,11 +32,47 @@ class mServo:
 		self.increment = val
 
 	def step(self):
-		self.servo.angle = min(max(self.servo.angle + (self.increment * self.scale), self.minAngle), self.maxAngle)
+		temp = self.servo.angle + (self.increment * self.scale)
+		if(self.minAngle<= temp <= self.maxAngle):
+			# print("Servo " + str(self.pin) + " angle: " + str(self.servo.angle))
+			self.servo.angle = temp
+		
+# speed is value from [0x0000..0xFFFF]
+class mMotor:
+	def __init__(self, in1, in2, pwmPin):
+		print("Adding motor with in1: " + str(in1) + ", in2: " + str(in2)+ ", pwm: " +str(pwmPin))
+		self.in1 = in1
+		self.in2 = in2
+		self.pwmPin = pwmPin
+		self.speed = 0x0000
+		GPIO.setup(self.in1, GPIO.OUT)
+		GPIO.setup(self.in2, GPIO.OUT)
 
+	def forward(self,val):
+		print("PCA forward, motor: "+str(self.pwmPin)+ " speed: "+str(val))
+		if (0x0000 <= val <= 0xFFFF):
+			GPIO.output(self.in1, GPIO.HIGH)
+			GPIO.output(self.in2, GPIO.LOW)
+			self.speed = val		
+		else:
+			print("val " + str(val) + " illegal")
 
-# Assuming Servos are always going to be on the pins [0,nServos-1] 
-# and pins [nServos, 15] can be used for pure pwm output
+	def reverse(self, val):
+		print("PCA reverse, motor: "+str(self.pwmPin)+ " speed: "+str(val))
+		if (0x0000 <= val <= 0xFFFF):
+			GPIO.output(self.in1, GPIO.LOW)
+			GPIO.output(self.in2, GPIO.HIGH)
+			self.speed = val		
+		else:
+			print("val " + str(val) + " illegal")
+
+	def stop(self):
+		print("PCA reverse, motor: "+str(self.pwmPin))
+		GPIO.output(self.in1, GPIO.HIGH)
+		GPIO.output(self.in2, GPIO.HIGH)
+		self.speed = 0xFFFF
+
+# Assuming Servos are always attached in order from 0..15 and motors from 15..0
 class PcaBoard: 
 	def __init__(self, address = 64):
 		print("PCA board init, address:"+str(address)) 
@@ -48,11 +85,21 @@ class PcaBoard:
 	def addServo(self, initAngle=0, minAngle=0, maxAngle=270):
 		if len(self.servos) < 16:
 			i = len(self.servos)
-			self.servos.append(mServo(i))
+			self.servos.append(mServo(i, initAngle=initAngle,minAngle=minAngle,maxAngle=maxAngle))
 			self.servos[i].servo = servo.Servo(self.pca.channels[i], min_pulse=500,max_pulse=2500, actuation_range=270)
+			self.servos[i].servo.angle = initAngle
 			return i
 		else:
 			print("Already at max servos")
+			return None
+	
+	def addMotor(self, in1, in2):
+		if len(self.servos) + len(self.motors) < 16:
+			i = 15 - len(self.motors)
+			self.motors.append(mMotor(in1, in2, i))
+			return i
+		else:
+			print("Already at max servos + motors")
 			return None
 
 	def setAngle(self, servo, angle):
@@ -61,11 +108,29 @@ class PcaBoard:
 		else:
 			print("Servo " + str(servo) + "out of index")
 
-	def setIncrement(self, servo, val):
+	def setServoIncrement(self, servo, val):
 		if(servo < len(self.servos)):
 			self.servos[servo].setIncrement(val)
 		else:
 			print("Servo " + str(servo) + "out of index")
+
+	def motorForward(self, motor, val):
+		if(motor >= 15-len(self.motors)):
+			self.motors[15-motor].forward(val)
+		else:
+			print("Motor " + str(motor) + "out of index")
+
+	def motorReverse(self, motor, val):
+		if(motor >= 15-len(self.motors)):
+			self.motors[15-motor].reverse(val)
+		else:
+			print("Motor " + str(motor) + "out of index")
+
+	def motorStop(self, motor):
+		if(motor >= 15-len(self.motors)):
+			self.motors[15-motor].stop
+		else:
+			print("Motor " + str(motor) + "out of index")
 
 	# Duty Cycle range [0x0000, 0xFFFF] = [0, 65535] for 0% to 100%
 	def setDutyCycle(self, pin, amount):
@@ -78,3 +143,5 @@ class PcaBoard:
 	def step(self):
 		for s in self.servos:
 			s.step()
+		for m in self.motors:
+			self.pca.channels[m.pwmPin].duty_cycle = m.speed
