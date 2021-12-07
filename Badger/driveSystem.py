@@ -2,6 +2,9 @@ from math import ceil
 import pcaBoard
 # Left stick is going to be used for translation
 # Right stick x is going to be used for rotation
+
+# d-pad will go direct lines at 1/4 speed
+# normal control and d-pad control will not work at the same time
 CONTROLLER_SCALE = 2**15
 MOTOR_SCALE = 2**16
 class Drive:
@@ -67,6 +70,18 @@ class Drive:
     
     def setxR(self, val):
         self.xR = val
+
+    def goFront(self):
+        self.xL = -0.63 * CONTROLLER_SCALE
+    
+    def goBack(self):
+        self.xL = 0.63 * CONTROLLER_SCALE
+    
+    def goRight(self):
+        self.xL = 0.63 * CONTROLLER_SCALE
+        
+    def goLeft(self):
+        self.xL = -0.63 * CONTROLLER_SCALE
 
     def step(self):
         if self.xL == 0 and self.yL == 0 and self.xR == 0:

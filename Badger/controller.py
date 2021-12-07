@@ -15,28 +15,24 @@ class MyController(Controller):
     # Example of overloading button press functions
 	def on_x_press(self):
 		print("on_x_press")
-		self.pca.setAngle(0, 0)
 
 	def on_x_release(self):
 		print("on_x_release")
 
 	def on_triangle_press(self):
 		print("on_triangle_press")
-		self.pca.setDutyCycle(15, 0x0000)
 
 	def on_triangle_release(self):
 		print("on_triangle_release")
 
 	def on_circle_press(self):
 		print("on_circle_press")
-		self.pca.setAngle(0, 180)
 
 	def on_circle_release(self):
 		print("on_circle_release")
 
 	def on_square_press(self):
 		print("on_square_press")
-		self.pca.setDutyCycle(15, 0x7FFF)
 
 	def on_square_release(self):
 		print("on_square_release")
@@ -58,7 +54,6 @@ class MyController(Controller):
 
 	def on_R1_press(self):
 		print("on_R1_press")
-		self.pca.setDutyCycle(1000, 0x81EA)
 
 	def on_R1_release(self):
 		print("on_R1_release")
@@ -73,21 +68,28 @@ class MyController(Controller):
 
 	def on_up_arrow_press(self):
 		print("on_up_arrow_press")
+		self.drive.goFront()
 
 	def on_up_down_arrow_release(self):
 		print("on_up_down_arrow_release")
+		self.drive.setyL(0)
 
 	def on_down_arrow_press(self):
 		print("on_down_arrow_press")
+		self.drive.goBack()
+
 
 	def on_left_arrow_press(self):
 		print("on_left_arrow_press")
+		self.drive.goLeft()
 
 	def on_left_right_arrow_release(self):
 		print("on_left_right_arrow_release")
+		self.drive.setxL(0)
 
 	def on_right_arrow_press(self):
 		print("on_right_arrow_press")
+		self.drive.goRight()
 
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_L3_up(self, value):
