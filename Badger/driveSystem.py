@@ -35,30 +35,30 @@ class Drive:
         if frontLeftPower == 0:
             self.pca.motorNeutral(self.motorFL)
         elif frontLeftPower > 0:
-            self.pca.motorForward(self.motorFL, abs(ceil(frontLeftPower * MOTOR_SCALE)))
+            self.pca.motorForward(self.motorFL, abs(ceil(frontLeftPower * MOTOR_SCALE))-1)
         else:
-            self.pca.motorReverse(self.motorFL, abs(ceil(frontLeftPower * MOTOR_SCALE)))
+            self.pca.motorReverse(self.motorFL, abs(ceil(frontLeftPower * MOTOR_SCALE))-1)
         
         if frontRightPower == 0:
             self.pca.motorNeutral(self.motorFR)
         elif frontRightPower > 0:
-            self.pca.motorForward(self.motorFR, abs(ceil(frontRightPower * MOTOR_SCALE)))
+            self.pca.motorForward(self.motorFR, abs(ceil(frontRightPower * MOTOR_SCALE))-1)
         else:
-            self.pca.motorReverse(self.motorFR, abs(ceil(frontRightPower * MOTOR_SCALE)))
+            self.pca.motorReverse(self.motorFR, abs(ceil(frontRightPower * MOTOR_SCALE))-1)
 
         if backLeftPower == 0:
             self.pca.motorNeutral(self.motorBL)
         elif backLeftPower > 0:
-            self.pca.motorForward(self.motorBL, abs(ceil(backLeftPower * MOTOR_SCALE)))
+            self.pca.motorForward(self.motorBL, abs(ceil(backLeftPower * MOTOR_SCALE))-1)
         else:
-            self.pca.motorReverse(self.motorBL, abs(ceil(backLeftPower * MOTOR_SCALE)))
+            self.pca.motorReverse(self.motorBL, abs(ceil(backLeftPower * MOTOR_SCALE))-1)
         
         if backRightPower == 0:
             self.pca.motorNeutral(self.motorBR)
         elif backRightPower > 0:
-            self.pca.motorForward(self.motorBR, abs(ceil(backRightPower * MOTOR_SCALE)))
+            self.pca.motorForward(self.motorBR, abs(ceil(backRightPower * MOTOR_SCALE))-1)
         else:
-            self.pca.motorReverse(self.motorBR, abs(ceil(backRightPower * MOTOR_SCALE)))
+            self.pca.motorReverse(self.motorBR, abs(ceil(backRightPower * MOTOR_SCALE))-1)
 
     def setxL(self, val):
         self.xL = val
