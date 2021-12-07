@@ -22,7 +22,7 @@ class driveSystem:
         self.pca.motorStop(self.motorBR)
 
     def run(self):
-        x = self.xL / CONTROLLER_SCALE
+        x = self.xL *1.1/ CONTROLLER_SCALE # Additional multiplier to combat imperfect strafing
         y = -self.yL / CONTROLLER_SCALE
         xr = self.xR / CONTROLLER_SCALE
         denom = max( abs(x) + abs(y) + abs(xr), 1)
