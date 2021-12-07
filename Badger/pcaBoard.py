@@ -6,7 +6,7 @@ from time import sleep
 import RPi.GPIO as GPIO
 from statistics import median
 
-DEFAULT_SCALE_FACTOR = -1/(2**11)
+DEFAULT_SCALE_FACTOR = -1/(2**12)
 
 class mServo:
 	def __init__(self, pin, initAngle=0, minAngle=0, maxAngle=270):
@@ -67,10 +67,16 @@ class mMotor:
 			print("val " + str(val) + " illegal")
 
 	def stop(self):
-		print("PCA reverse, motor: "+str(self.pwmPin))
+		print("PCA stop, motor: "+str(self.pwmPin))
 		GPIO.output(self.in1, GPIO.HIGH)
 		GPIO.output(self.in2, GPIO.HIGH)
 		self.speed = 0xFFFF
+
+	def neutral(self):
+		print("PCA neutral, motor: "+str(self.pwmPin))
+		GPIO.output(self.in1, GPIO.HIGH)
+		GPIO.output(self.in2, GPIO.HIGH)
+		self.speed = 0x0000
 
 # Assuming Servos are always attached in order from 0..15 and motors from 15..0
 class PcaBoard: 
@@ -128,7 +134,13 @@ class PcaBoard:
 
 	def motorStop(self, motor):
 		if(motor >= 15-len(self.motors)):
-			self.motors[15-motor].stop
+			self.motors[15-motor].stop()
+		else:
+			print("Motor " + str(motor) + "out of index")
+
+	def motorNeutral(self, motor):
+		if(motor >= 15-len(self.motors)):
+			self.motors[15-motor].neutral()
 		else:
 			print("Motor " + str(motor) + "out of index")
 

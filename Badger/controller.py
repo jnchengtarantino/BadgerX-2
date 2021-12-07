@@ -1,11 +1,13 @@
 from pyPS4Controller.controller import Controller
 from pcaBoard import PcaBoard
 from time import sleep
+import driveSystem
 
 class MyController(Controller):
    
-	def __init__(self, pcaBoard, interface, connecting_using_ds4drv):
+	def __init__(self, drive, pcaBoard, interface, connecting_using_ds4drv):
 		self.pca = pcaBoard
+		self.drive = drive
 		print(interface)
 		print(connecting_using_ds4drv)
 		Controller.__init__(self, interface, connecting_using_ds4drv)
@@ -90,34 +92,42 @@ class MyController(Controller):
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_L3_up(self, value):
 		print("on_L3_up: {}".format(value))
+		self.drive.setyL(value)
 		# self.pca.motorForward(15,abs(value)*2)
-		self.pca.setServoIncrement(1, value)
+		# self.pca.setServoIncrement(1, value)
+
 
 	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_L3_down(self, value):
 		print("on_L3_down: {}".format(value))
+		self.drive.setyL(value)
 		# self.pca.motorReverse(15,abs(value)*2)
-		self.pca.setServoIncrement(1, value)
+		# self.pca.setServoIncrement(1, value)
 
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_L3_left(self, value):
 		print("on_L3_left: {}".format(value))
+		self.drive.setxL(value)
+
 
 	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_L3_right(self, value):
 		print("on_L3_right: {}".format(value))
+		self.drive.setxL(value)
 
 	# Deadzone in range [-337, 336]
 	def on_L3_y_at_rest(self):
 		"""L3 joystick is at rest after the joystick was moved and let go off"""
 		print("on_L3_y_at_rest")
+		self.drive.setyL(0)
 		# self.pca.motorStop(15)
-		self.pca.setServoIncrement(1, 0)
+		# self.pca.setServoIncrement(1, 0)
 
 	# Deadzone in range [-337, 336]
 	def on_L3_x_at_rest(self):
 		"""L3 joystick is at rest after the joystick was moved and let go off"""
 		print("on_L3_x_at_rest")
+		self.drive.setxL(0)
 
 	def on_L3_press(self):
 		"""L3 joystick is clicked. This event is only detected when connecting without ds4drv"""
@@ -140,10 +150,12 @@ class MyController(Controller):
 	# ranges from -338 (barely tilted) to -32767 (fully pressed)
 	def on_R3_left(self, value):
 		print("on_R3_left: {}".format(value))
+		self.drive.setxR(value)
 
 	# ranges from 337 (barely tilted) to 32767 (fully pressed)
 	def on_R3_right(self, value):
 		print("on_R3_right: {}".format(value))
+		self.drive.setxR(value)
 
 	# Deadzone in range [-337, 336]
 	def on_R3_y_at_rest(self):
@@ -155,6 +167,7 @@ class MyController(Controller):
 	def on_R3_x_at_rest(self):
 		"""R3 joystick is at rest after the joystick was moved and let go off"""
 		print("on_R3_x_at_rest")
+		self.drive.setxR(0)
 
 	def on_R3_press(self):
 		"""R3 joystick is clicked. This event is only detected when connecting without ds4drv"""
