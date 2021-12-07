@@ -26,11 +26,10 @@ class Drive:
         y = -self.yL / CONTROLLER_SCALE
         xr = self.xR / CONTROLLER_SCALE
         denom = max( abs(x) + abs(y) + abs(xr), 1)
-        # TODO: look into exponential (cubed) scaling for ease of control
-        frontLeftPower = (y + x + xr) / denom
-        backLeftPower = (y - x + xr) / denom
-        frontRightPower = (y - x - xr) / denom
-        backRightPower  = (y + x - xr) / denom
+        frontLeftPower = ((y + x + xr) / denom)**3
+        backLeftPower = ((y - x + xr) / denom)**3
+        frontRightPower = ((y - x - xr) / denom)**3
+        backRightPower  = ((y + x - xr) / denom)**3
 
         if frontLeftPower == 0:
             self.pca.motorNeutral(self.motorFL)
