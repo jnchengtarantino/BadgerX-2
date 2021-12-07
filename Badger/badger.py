@@ -1,4 +1,3 @@
-from Badger.driveSystem import Drive
 from controller import MyController
 from pcaBoard import PcaBoard
 from time import sleep
