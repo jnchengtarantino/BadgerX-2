@@ -15,7 +15,7 @@ class Drive:
         self.yL = 0x0000
         self.xR = 0x0000
 
-    def stop(self, val):
+    def stop(self):
         self.pca.motorStop(self.motorFL)
         self.pca.motorStop(self.motorFR)
         self.pca.motorStop(self.motorBL)
