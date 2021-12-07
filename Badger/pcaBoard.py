@@ -67,13 +67,13 @@ class mMotor:
 			print("val " + str(val) + " illegal")
 
 	def stop(self):
-		print("PCA stop, motor: "+str(self.pwmPin))
+		# print("PCA stop, motor: "+str(self.pwmPin))
 		GPIO.output(self.in1, GPIO.HIGH)
 		GPIO.output(self.in2, GPIO.HIGH)
 		self.speed = 0xFFFF
 
 	def neutral(self):
-		print("PCA neutral, motor: "+str(self.pwmPin))
+		# print("PCA neutral, motor: "+str(self.pwmPin))
 		GPIO.output(self.in1, GPIO.HIGH)
 		GPIO.output(self.in2, GPIO.HIGH)
 		self.speed = 0x0000
