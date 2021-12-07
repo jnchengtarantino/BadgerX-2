@@ -1,10 +1,11 @@
+from Badger.driveSystem import Drive
 from controller import MyController
 from pcaBoard import PcaBoard
 from time import sleep
 import threading
 import os
 import RPi.GPIO as GPIO
-import driveSystem
+from driveSystem import Drive
 
 def restart():
 	os.system('sudo reboot')
@@ -20,7 +21,7 @@ FL = pca.addMotor(14,15)
 FR = pca.addMotor(23,24)
 BL = pca.addMotor(10,9)
 BR = pca.addMotor(8,7)
-drive = driveSystem(pca, FL,FR,BL,BR)
+drive = Drive(pca, FL,FR,BL,BR)
 controller = MyController(drive, pca, "/dev/input/js0", False)
 controllerThread = threading.Thread(target=threadFunction, args=[controller])
 controllerThread.start()

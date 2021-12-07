@@ -4,7 +4,7 @@ import pcaBoard
 # Right stick x is going to be used for rotation
 CONTROLLER_SCALE = 2**15
 MOTOR_SCALE = 2**16
-class driveSystem:
+class Drive:
     def __init__(self, pca, motorFL, motorFR, motorBL, motorBR):
         self.pca = pca
         self.motorFL = motorFL

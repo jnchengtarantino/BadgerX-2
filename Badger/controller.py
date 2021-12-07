@@ -1,7 +1,7 @@
 from pyPS4Controller.controller import Controller
 from pcaBoard import PcaBoard
 from time import sleep
-import driveSystem
+from driveSystem import Drive
 
 class MyController(Controller):
    
