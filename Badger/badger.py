@@ -28,7 +28,7 @@ FR = pca.addMotor(23,24)
 BL = pca.addMotor(10,9)
 BR = pca.addMotor(6,5)
 drive = Drive(pca, FL,FR,BL,BR)
-controller = MyController(drive, pca, arm, "/dev/input/js0", False)
+controller = MyController(drive, arm, pca, "/dev/input/js0", False)
 controllerThread = threading.Thread(target=threadFunction, args=[controller])
 controllerThread.start()
 
