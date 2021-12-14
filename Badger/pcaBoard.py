@@ -6,7 +6,7 @@ from time import sleep
 import RPi.GPIO as GPIO
 from statistics import median
 
-DEFAULT_SCALE_FACTOR = -1/(2**12)
+DEFAULT_SCALE_FACTOR = 1/(2**12)
 
 class mServo:
 	def __init__(self, pin, initAngle=0, minAngle=0, maxAngle=270):
@@ -117,6 +117,12 @@ class PcaBoard:
 	def setServoIncrement(self, servo, val):
 		if(servo < len(self.servos)):
 			self.servos[servo].setIncrement(val)
+		else:
+			print("Servo " + str(servo) + "out of index")
+
+	def setServoScale(self, servo, val):
+		if(servo < len(self.servos)):
+			self.servos[servo].setScale(val)
 		else:
 			print("Servo " + str(servo) + "out of index")
 
