@@ -20,7 +20,7 @@ pca = PcaBoard()
 rotServo = pca.addServo(initAngle=0, minAngle=0,maxAngle=100)
 fbServo = pca.addServo(minAngle = 0, maxAngle = 105)
 udServo = pca.addServo() 
-clawServo = pca.addServo
+clawServo = pca.addServo()
 arm = Arm(pca, rotServo, fbServo, udServo, clawServo)
 
 FL = pca.addMotor(14,15)
