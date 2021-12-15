@@ -72,10 +72,10 @@ class Drive:
         self.xR = val
 
     def goFront(self):
-        self.xL = -0.63 * CONTROLLER_SCALE
+        self.yL = -0.63 * CONTROLLER_SCALE
     
     def goBack(self):
-        self.xL = 0.63 * CONTROLLER_SCALE
+        self.yL = 0.63 * CONTROLLER_SCALE
     
     def goRight(self):
         self.xL = 0.63 * CONTROLLER_SCALE
