@@ -92,6 +92,7 @@ class MyController(Controller):
 	def on_up_down_arrow_release(self):
 		print("on_up_down_arrow_release")
 		self.drive.setyL(0)
+		self.drive.setxL(0)
 
 	# Go Backward at (max speed)/4
 	def on_down_arrow_press(self):
@@ -107,6 +108,7 @@ class MyController(Controller):
 	def on_left_right_arrow_release(self):
 		print("on_left_right_arrow_release")
 		self.drive.setxL(0)
+		self.drive.setyL(0)
 
 	# Go right at (max speed)/4
 	def on_right_arrow_press(self):
