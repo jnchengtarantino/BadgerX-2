@@ -24,8 +24,8 @@ clawServo = pca.addServo
 arm = Arm(pca, rotServo, fbServo, udServo, clawServo)
 
 FL = pca.addMotor(14,15)
-FR = pca.addMotor(23,24)
-BL = pca.addMotor(9,10)
+FR = pca.addMotor(24,23)
+BL = pca.addMotor(10,9)
 BR = pca.addMotor(5,6)
 drive = Drive(pca, FL,FR,BL,BR)
 controller = MyController(drive, arm, pca, "/dev/input/js0", False)
