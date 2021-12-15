@@ -26,8 +26,8 @@ class Drive:
 
     def run(self):
         x = -self.xL *1.1/ CONTROLLER_SCALE # Additional multiplier to combat imperfect strafing
-        y = -self.yL / CONTROLLER_SCALE
-        xr = self.xR / CONTROLLER_SCALE
+        y = self.yL / CONTROLLER_SCALE
+        xr = -self.xR / CONTROLLER_SCALE
         denom = max( abs(x) + abs(y) + abs(xr), 1)
         frontLeftPower = ((y + x + xr) / denom)**3
         backLeftPower = ((y - x + xr) / denom)**3
