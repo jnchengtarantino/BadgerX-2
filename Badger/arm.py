@@ -12,6 +12,11 @@ class Arm:
     # udServo generally does up/down movement
     # clawServo opens/closes the claw
     def __init__(self,pca,rotServo,fbServo, udServo, clawServo):
+        print("Init arm with")
+        print("rotServor: " + str(rotServo))
+        print("fbServo: " + str(fbServo))
+        print("udServo: " + str(udServo))
+        print("clawServo: " + str(clawServo))
         self.pca = pca
         self.rotServo = rotServo
         self.fbServo = fbServo
