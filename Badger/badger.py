@@ -17,9 +17,9 @@ GPIO.setmode(GPIO.BCM)
 pca = PcaBoard()
 
 #TODO test and fix all init/min/max angles
-rotServo = pca.addServo(initAngle=0, minAngle=0,maxAngle=100)
-fbServo = pca.addServo(initAngle = 90, minAngle = 0, maxAngle = 105)
-udServo = pca.addServo(initAngle=0, maxAngle=90) 
+rotServo = pca.addServo(initAngle=0)
+fbServo = pca.addServo(initAngle = 90)
+udServo = pca.addServo(initAngle=0) 
 clawServo = pca.addServo(initAngle=270)
 
 # For calibration
