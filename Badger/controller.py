@@ -63,7 +63,7 @@ class MyController(Controller):
 	# Resets Claw closing speed
 	def on_L2_release(self):
 		print("on_L2_release")
-		self.arm.closeClaw(0)
+		self.arm.stopClaw()
 
 	def on_R1_press(self):
 		print("on_R1_press")
@@ -81,7 +81,7 @@ class MyController(Controller):
 	# Ranges from -32431 (barely pressed) to 32767 (fully pressed)
 	def on_R2_release(self):
 		print("on_R2_release")
-		self.arm.openClaw(0)
+		self.arm.stopClaw()
 
 	# Go forward at (max speed)/4
 	def on_up_arrow_press(self):
