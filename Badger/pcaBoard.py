@@ -111,6 +111,7 @@ class PcaBoard:
 	def setAngle(self, servo, angle):
 		if(servo < len(self.servos)):
 			self.servos[servo].setAngle(angle)
+			print("setting servo " + str(servo) + " to " + angle)
 		else:
 			print("Servo " + str(servo) + "out of index")
 
