@@ -21,6 +21,12 @@ rotServo = pca.addServo(initAngle=0, minAngle=0,maxAngle=100)
 fbServo = pca.addServo(initAngle = 180, minAngle = 0, maxAngle = 105)
 udServo = pca.addServo(initAngle=180) 
 clawServo = pca.addServo(initAngle=270)
+
+# For calibration
+zeroServo = pca.addServo(initAngle=0)
+ninetyServo = pca.addServo(initAngle=90)
+oneEightyServo = pca.addServo(initAngle=180)
+twoSeventyServo = pca.addServo(initAngle=270)
 arm = Arm(pca, rotServo, fbServo, udServo, clawServo)
 
 FL = pca.addMotor(14,15)
