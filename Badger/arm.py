@@ -51,3 +51,6 @@ class Arm:
     def closeClaw(self, val):
         val = -CONTROLLER_SCALE * ( (val + CONTROLLER_SCALE) / (2 * CONTROLLER_SCALE) )**3
         self.pca.setServoIncrement(self.clawServo, val)
+
+    def stopClaw(self):
+        self.pca.setServoIncrement(self.clawServo, 0)
