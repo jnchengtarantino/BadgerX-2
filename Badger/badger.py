@@ -19,12 +19,12 @@ pca = PcaBoard()
 #TODO test and fix all init/min/max angles
 rotServo = pca.addServo(initAngle=0)
 fbServo = pca.addServo(initAngle = 90)
-udServo = pca.addServo(initAngle=0) 
-clawServo = pca.addServo(initAngle=270)
+udServo = pca.addServo(initAngle=100, minAngle=90) 
+clawServo = pca.addServo(initAngle=0)
 
 # For calibration
 zeroServo = pca.addServo(initAngle=0)
-ninetyServo = pca.addServo(initAngle=90)
+ninetyServo = pca.addServo(initAngle=100)
 oneEightyServo = pca.addServo(initAngle=180)
 twoSeventyServo = pca.addServo(initAngle=270)
 arm = Arm(pca, rotServo, fbServo, udServo, clawServo)
